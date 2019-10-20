@@ -1,11 +1,14 @@
 from nonebot import on_command, CommandSession
+from py_mcpe_stats import query
 
 
 @on_command('querype', aliases=('pe在线', '基岩版查在线'))
 async def querype(session: CommandSession):
     ip = session.get("ip", prompt="你想查询哪个基岩版服务器的在线情况呢?")
     port = session.get("port", prompt="服务器的端口是什么呢？")
-    await session.send("查询" + ip + ":" + port)
+    q = query.Query(ip, port, 10)
+    server_status = q.query()
+    await session.send(server_status)
     # 获得服务器的在线情况
 
 

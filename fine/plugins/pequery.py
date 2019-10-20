@@ -6,7 +6,7 @@ from py_mcpe_stats import query
 async def querype(session: CommandSession):
     ip = session.get("ip", prompt="你想查询哪个基岩版服务器的在线情况呢?")
     port = session.get("port", prompt="服务器的端口是什么呢？")
-    q = query.Query(ip, port, 10)
+    q = query.Query(ip, int(port), 10)
     server_status = q.query()
     await session.send(server_status)
     # 获得服务器的在线情况

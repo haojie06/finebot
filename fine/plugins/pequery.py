@@ -8,7 +8,7 @@ async def querype(session: CommandSession):
     port = session.get("port", prompt="服务器的端口是什么呢？")
     q = query.Query(ip, int(port), 10)
     server_status = q.query()
-    await session.send(server_status)
+    await session.send(server_status.SERVER_NAME + "\n" + server_status.MOTD)
     # 获得服务器的在线情况
 
 
